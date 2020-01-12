@@ -19,7 +19,7 @@ public class IntroToTemplates {
 		//Here we are calling calcStuff and passing in a Random object
 		i.calcStuff(r, 6);
 		
-		//Here we create two object of the SomeClass class and 
+		//Here we create two objects of the SomeClass class and 
 		//define its template variable to be two different types, String and Integer
 		SomeClass<String> scObj = new SomeClass<String>("sodapop");
 		SomeClass<Integer> scObj2 = new SomeClass<Integer>(412);
