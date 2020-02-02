@@ -37,6 +37,7 @@ public class ArrayList <T>{
 				b = 1;
 			}
 		}
+		t = a;
 	}
 	
 	public void set(int loc, T val) throws IndexOutOfBoundsException {
@@ -61,7 +62,16 @@ public class ArrayList <T>{
 	}
 	
 	public boolean contains(T val) {
-		
+		for (int i = 0; i < t.length; i++) {
+			if (t[i].equals(val)) {
+				return true;
+			}
+		}
 		return false;
+	}
+
+	public int size() {
+		
+		return t.length;
 	}
 }
