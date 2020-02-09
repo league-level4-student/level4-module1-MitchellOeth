@@ -44,7 +44,6 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		panel = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public void paintComponent(Graphics g) {
 				Graphics2D g2 = (Graphics2D) g;
 
@@ -102,17 +101,15 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 	public static void main(String[] args) {
 		new _00_SnakeGame();
 	}
-
-	@Override
+	
 	public void keyTyped(KeyEvent e) {
 
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
 		//1. Use a switch statement on e.getKeyCode()
 		//   to determine which key was pressed.
-		
+
 		// if an arrow key is pressed, set the snake's 
 		// direction accordingly
 		
@@ -176,24 +173,30 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 			case "No Thanks":
 				System.exit(0);
 		}
+	}
+
+	public void keyReleased(KeyEvent e) {
 		
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		//1. update the snake
-
+		snake.update();
 		//2. if the snake is colliding with its own body 
 		//   or if the snake is out of bounds, call gameOver
-
+		if (snake.isHeadCollidingWithBody() == true ) {
+			gameOver();
+		}
+		if (snake.isOutOfBounds() == true ) {
+			gameOver();
+		}
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-
+		if (snake.getHeadLocation() == foodLocation) {
+			snake.feed();
+			setFoodLocation();
+		}
 		//4. call panel.repaint();
+		panel.repaint();
 	}
 }
