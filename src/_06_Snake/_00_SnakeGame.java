@@ -35,7 +35,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 	private Timer timer;
 
-	private Location foodLocation;
+	public Location foodLocation;
 
 	public _00_SnakeGame() {
 		snake = new Snake(new Location(WIDTH / 2, HEIGHT / 2));
@@ -143,12 +143,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//1. Create a new Location object that is set to a random location
 		Random randy = new Random();
 		Location randLoc = new Location(randy.nextInt(15), randy.nextInt(12));
+		
 		//2. set the foodLocation variable equal to the Location object you just created.
 		//   use the snake's isLocationOnSnake method to make sure you don't put the food on the snake
 		foodLocation = randLoc;
-		if (snake.isLocationOnSnake(foodLocation) == true) {
+		if (snake.isLocationOnSnake(foodLocation)) {
 			setFoodLocation();
-		}
+		}	
 	}
 
 	private void gameOver() {
@@ -178,8 +179,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		
 	}
-
+	
 	public void actionPerformed(ActionEvent e) {
+
 		//1. update the snake
 		snake.update();
 		//2. if the snake is colliding with its own body 
@@ -192,7 +194,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		}
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-		if (snake.getHeadLocation() == foodLocation) {
+		if (snake.getHeadLocation().x == foodLocation.x && snake.getHeadLocation().y == foodLocation.y) {
 			snake.feed();
 			setFoodLocation();
 		}

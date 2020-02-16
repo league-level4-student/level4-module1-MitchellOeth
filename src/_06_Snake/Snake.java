@@ -25,7 +25,7 @@ public class Snake {
 
 	public void feed() {
 		//1. add a new SnakeSegment object to the snake
-		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
+		snake.add(new SnakeSegment(getHeadLocation(), BODY_SIZE));
 	}
 
 	public Location getHeadLocation() {
@@ -58,9 +58,8 @@ public class Snake {
 		//2. Iterate through the SnakeSegments in reverse order
 		//2a. Update each snake segment to the location of the segment 
 		//    in front of it.
-		for (int i = snake.size(); i > 1; i++) {
+		for (int i = snake.size()-1; i > 0; i--) {
 			snake.get(i).setLocation(snake.get(i - 1).getLocation());
-			
 		}
 		
 		//3. set the location of the head to the new location calculated in step 1
@@ -106,13 +105,13 @@ public class Snake {
 		if (getHeadLocation().x < 0) {
 			return true;
 		}
-		if (getHeadLocation().x > 15) {
+		if (getHeadLocation().x > 14) {
 			return true;
 		}
 		if (getHeadLocation().y < 0) {
 			return true;
 		}
-		if (getHeadLocation().y > 12) {
+		if (getHeadLocation().y > 11) {
 			return true;
 		}
 		return false;
@@ -133,7 +132,7 @@ public class Snake {
 		//1. complete the method so it returns true if the passed in
 		//   location is located on the snake
 		for (int i = 0; i < snake.size(); i++) {
-			if (snake.get(i).getLocation() == loc) {
+			if (snake.get(i).getLocation().x == loc.x && snake.get(i).getLocation().y == loc.y) {
 				return true;
 			}
 		}
